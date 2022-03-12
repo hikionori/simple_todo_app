@@ -1,0 +1,18 @@
+<h1>My ToDo app</h1>
+
+<form action="/addToDo/", method="post">
+    {% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Add ToDo">
+</form>
+
+<ul>
+    {% for i in all_items %}
+    <li>
+        {{ i.content }}
+        <form action="/deleteToDo/{{i.id}}/", method="post",> {% csrf_token %}
+            <input type="submit", value="Delete">
+        </form>
+    </li>
+    {% endfor %}
+</ul>
